@@ -11,6 +11,7 @@ void	ft_initialize_data(t_data *data)
 	else
 		data->must_eat = -1;
 	data->is_dead = 0;
+	data->all_ate = 0;
 	if (data->philos_num < 1)
 		exit (1);
 }

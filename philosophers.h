@@ -35,6 +35,8 @@ typedef struct s_data{
 	char			*args;
 	char			**arguments;
 	t_philo			philosopher[200];
+	int				total;
+	pthread_mutex_t	eat;
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	output;
 }   t_data;

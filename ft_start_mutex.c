@@ -15,4 +15,5 @@ void	ft_start_mutex(t_data *data)
 		i++;
 	}
 	pthread_mutex_init(&data->output, NULL);
+	pthread_mutex_init(&data->eat, NULL);
 }
