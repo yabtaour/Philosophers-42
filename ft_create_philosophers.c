@@ -1,35 +1,22 @@
 #include "philosophers.h"
 
-void	ft_check_dead(t_data *data)
+void ft_destroy(t_data *data)
 {
 	int	i;
-	int j;
 
 	i = 0;
-	while (1)
+	pthread_mutex_destroy(&data->output);
+	pthread_mutex_destroy(&data->eat);
+	while (i < data->philos_num)
 	{
-		i = 0;
-		while (i < data->philos_num)
-		{
-			if (data->argc == 6 && data->total >= data->philos_num * data->must_eat)
-			{
-				free(data);
-				exit(1);
-			}
-			if ((ft_timestamp() - data->philosopher[i].last_meal) >= data->time_to_die)
-			{
-				data->is_dead = 1;
-				pthread_mutex_lock(&data->output);
-				printf("[%lld] Philosopher %d died \n", ft_timestamp() - data->birth, i + 1);
-				free(data);
-				exit(1);
-			}
-			i++;
-		}
+		pthread_detach(data->philosopher[i].thread_id);
+		pthread_mutex_destroy(data->philosopher[i].right_fork);
+		pthread_mutex_destroy(data->philosopher[i].left_fork);
+		i++;
 	}
 }
 
-void	ft_create_philosophers(t_data *data)
+int	ft_create_philosophers(t_data *data)
 {
 	int i;
 
@@ -38,19 +25,28 @@ void	ft_create_philosophers(t_data *data)
 	while (i < data->philos_num)
 	{
 		data->philosopher[i].last_meal = ft_timestamp();
-		if (pthread_create(&data->philosopher[i].thread_id, NULL, &routine, &data->philosopher[i]) != 0)
+		if (pthread_create(&data->philosopher[i].thread_id, NULL, &ft_routine, &data->philosopher[i]) != 0)
 		{
 			free(data);
-			exit (1);
+			return (0);
 		}
 		usleep(100);
 		i++;
 	}
-	ft_check_dead(data);
+	if (ft_check_dead(data))
+	{
+		ft_destroy(data);
+		return (0);
+	}
 	i = 0;
 	while (i < data->philos_num)
 	{
-		pthread_join(data->philosopher[i].thread_id, NULL);
+		if (pthread_join(data->philosopher[i].thread_id, NULL) != 0)
+		{
+			free(data);
+			return (0);
+		}
 		i++;
 	}
+	return (1);
 }

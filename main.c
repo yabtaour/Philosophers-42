@@ -9,9 +9,13 @@ int	main(int argc, char *argv[])
 		return (1);
 	data->argc = argc;
 	data->argv = argv;
-	ft_parsing(data);
+	if (!ft_parsing(data))
+		return (1);
 	ft_initialize_data(data);
-	ft_start_mutex(data);
+	if (!ft_start_mutex(data))
+		return (1);
 	ft_initialize_philosophers(data);
-	ft_create_philosophers(data);
+	if (!ft_create_philosophers(data))
+		return (1);
+	return (0);
 }

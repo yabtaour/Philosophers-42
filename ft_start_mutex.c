@@ -1,6 +1,6 @@
 #include "philosophers.h"
 
-void	ft_start_mutex(t_data *data)
+int	ft_start_mutex(t_data *data)
 {
 	int	i;
 
@@ -10,10 +10,19 @@ void	ft_start_mutex(t_data *data)
 		if (pthread_mutex_init(&data->fork[i], NULL) != 0)
 		{
 			free(data);
-			exit (1);
+			return (0);
 		}
 		i++;
 	}
-	pthread_mutex_init(&data->output, NULL);
-	pthread_mutex_init(&data->eat, NULL);
+	if (pthread_mutex_init(&data->output, NULL) != 0)
+	{
+		free(data);
+		return (0);
+	}
+	if (pthread_mutex_init(&data->eat, NULL) != 0)
+	{
+		free(data);
+		return (0);
+	}
+	return (1);
 }
