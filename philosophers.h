@@ -36,6 +36,9 @@ typedef struct s_data{
 	char			**arguments;
 	t_philo			philosopher[200];
 	int				total;
+	long long		time;
+	long long		norm;
+	long long		norm2;
 	pthread_mutex_t	eat;
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	output;
