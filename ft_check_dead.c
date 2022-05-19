@@ -1,12 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_dead.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yabtaour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/19 15:21:35 by yabtaour          #+#    #+#             */
+/*   Updated: 2022/05/19 23:36:14 by yabtaour         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "philosophers.h"
 
 int	ft_check_total_eat(t_data *data)
 {
 	if (data->argc == 6 && data->total >= data->philos_num * data->must_eat)
-	{
-		free(data);
 		return (1);
-	}
 	return (0);
 }
 

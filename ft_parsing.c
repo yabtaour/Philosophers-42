@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yabtaour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/19 22:04:56 by yabtaour          #+#    #+#             */
+/*   Updated: 2022/05/19 22:06:07 by yabtaour         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "philosophers.h"
 
 int	ft_check_args(char **arguments)
@@ -11,7 +22,8 @@ int	ft_check_args(char **arguments)
 		j = 0;
 		while (arguments[i][j])
 		{
-			if ((arguments[i][j] != '+') && (arguments[i][j] > '9' || arguments[i][j] < '0'))
+			if ((arguments[i][j] != '+') && (arguments[i][j] > '9'
+				|| arguments[i][j] < '0'))
 			{
 				free_split(arguments);
 				exit(0);
@@ -39,7 +51,7 @@ int	ft_check_plus(char **arguments)
 				if (arguments[i][j + 1] > '9' || arguments[i][j + 1] < '0')
 				{
 					free_split(arguments);
-					return(0);
+					return (0);
 				}
 			}
 			j++;

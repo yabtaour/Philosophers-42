@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yabtaour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/19 22:16:39 by yabtaour          #+#    #+#             */
+/*   Updated: 2022/05/19 22:16:41 by yabtaour         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "philosophers.h"
 
 int	main(int argc, char *argv[])
 {
 	t_data	*data;
 
-	data = (t_data *)malloc(sizeof(t_data));	
+	data = (t_data *)malloc(sizeof(t_data));
 	if (argc != 5 && argc != 6)
 		return (1);
 	data->argc = argc;

@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_eat.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yabtaour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/19 15:25:59 by yabtaour          #+#    #+#             */
+/*   Updated: 2022/05/19 15:26:02 by yabtaour         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "philosophers.h"
 
 void	ft_eat(t_philo *philosopher)
 {
 	pthread_mutex_lock(philosopher->right_fork);
-	ft_output(philosopher->data, philosopher->philo_id, "has taken the right fork");
+	ft_output(philosopher->data, philosopher->philo_id, "has taken a fork");
 	pthread_mutex_lock(philosopher->left_fork);
-	ft_output(philosopher->data, philosopher->philo_id, "has taken the left fork");
+	ft_output(philosopher->data, philosopher->philo_id, "has taken a fork");
 	ft_output(philosopher->data, philosopher->philo_id, "is eating");
 	philosopher->last_meal = ft_timestamp();
 	ft_sleep(philosopher->data->time_to_eat, philosopher->data);
