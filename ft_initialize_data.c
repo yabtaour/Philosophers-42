@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "philosophers.h"
 
-void	ft_initialize_data(t_data *data)
+int	ft_initialize_data(t_data *data)
 {
 	data->philos_num = ft_atoi(data->argv[1]);
 	data->time_to_die = ft_atoi(data->argv[2]);
@@ -24,5 +24,6 @@ void	ft_initialize_data(t_data *data)
 	data->is_dead = 0;
 	data->all_ate = 0;
 	if (data->philos_num < 1)
-		exit (1);
+		return (0);
+	return (1);
 }

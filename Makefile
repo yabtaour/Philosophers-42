@@ -8,7 +8,8 @@ SRC = ft_calloc.c main.c ft_timestamp.c\
 		ft_output.c ft_eat.c ft_check_dead.c\
 		ft_parsing.c ft_initialize_data.c\
 		ft_start_mutex.c ft_initialize_philosophers.c \
-		ft_create_philosophers.c ft_sleep.c\
+		ft_create_philosophers.c ft_sleep.c \
+		ft_is_digit.c \
 
 OBJ = ${SRC:.c=.o}
 

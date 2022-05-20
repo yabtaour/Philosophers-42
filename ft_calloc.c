@@ -42,6 +42,6 @@ void	*ft_calloc(int count, int size)
 	if (ptr != NULL)
 		ft_bzero(ptr, sizee);
 	else
-		exit(1);
+		return (NULL);
 	return (ptr);
 }

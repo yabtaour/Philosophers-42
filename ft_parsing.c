@@ -26,7 +26,7 @@ int	ft_check_args(char **arguments)
 				|| arguments[i][j] < '0'))
 			{
 				free_split(arguments);
-				exit(0);
+				return (0);
 			}
 			j++;
 		}
@@ -61,6 +61,35 @@ int	ft_check_plus(char **arguments)
 	return (1);
 }
 
+int	ft_check_max(char **arg)
+{
+	int	i;
+	int	j;
+	int	found;
+
+	i = 1;
+	j = 0;
+	found = 0;
+	while (arg[i])
+	{
+		j = 0;
+		while (arg[i][j])
+		{
+			if (found != 1 && ft_d(arg[i][j]))
+				found = 1;
+			if (found == 1 && arg[i][j] == ' ' && ft_d(arg[i][j + 1]))
+				return (0);
+			j++;
+		}
+		i++;
+		if (found == 1)
+			found = 0;
+		else
+			return (0);
+	}
+	return (1);
+}
+
 int	ft_parsing(t_data *data)
 {
 	data->args = ft_join_args(data->argv, data->argc);
@@ -76,6 +105,8 @@ int	ft_parsing(t_data *data)
 	if (!ft_check_args(data->arguments))
 		return (0);
 	if (!ft_check_plus(data->arguments))
+		return (0);
+	if (!ft_check_max(data->arguments))
 		return (0);
 	free_split(data->arguments);
 	return (1);

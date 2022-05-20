@@ -33,14 +33,14 @@ char	*ft_strjoin(char *s1, char *s2)
 	{
 		s1 = (char *)malloc(1 * sizeof(char));
 		if (!s1)
-			exit(1);
+			return (NULL);
 		s1[0] = '\0';
 	}
 	if (!s2)
 		return (NULL);
 	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 2);
 	if (!str)
-		exit(1);
+		return (NULL);
 	i = -1;
 	j = 0;
 	while (s1[++i])
@@ -61,6 +61,8 @@ char	*ft_join_args(char *argv[], int argc)
 	args = NULL;
 	while (i < argc)
 	{
+		if (argv[i][0] == '\0')
+			return (NULL);
 		args = ft_strjoin(args, argv[i++]);
 		args = ft_strjoin(args, " ");
 	}

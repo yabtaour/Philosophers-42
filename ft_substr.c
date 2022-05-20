@@ -23,7 +23,7 @@ char	*ft_substr(char *s, int start, size_t len)
 		return (NULL);
 	ptr = (char *)malloc((len + 1) * sizeof(char));
 	if (!ptr)
-		exit (1);
+		return (NULL);
 	if (start <= ft_strlen(s))
 	{
 		while (start < end && s[start] != '\0')

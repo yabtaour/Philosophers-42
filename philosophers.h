@@ -68,10 +68,11 @@ void		ft_sleep(long long time, t_data *data);
 void		ft_eat(t_philo *philosopher);
 int			ft_check_dead(t_data *data);
 int			ft_parsing(t_data *data);
-void		ft_initialize_data(t_data *data);
+int			ft_initialize_data(t_data *data);
 int			ft_start_mutex(t_data *data);
 void		ft_initialize_philosophers(t_data *data);
 int			ft_create_philosophers(t_data *data);
 void		*routine(void *data);
+int			ft_d(int c);
 
 #endif
