@@ -7,7 +7,10 @@ SRC = main_bonus.c ft_parsing_bonus.c \
 		ft_initialize_data_bonus.c \
 		ft_split_bonus.c ft_substr_bonus.c\
 		ft_timestamp_bonus.c ft_is_digit_bonus.c \
-		ft_join_args_bonus.c \
+		ft_join_args_bonus.c ft_start_semaphores_bonus.c \
+		ft_start_bonus.c ft_output_bonus.c \
+		ft_sleep_bonus.c ft_start_philos_bonus.c \
+
 
 OBJ = ${SRC:.c=.o}
 

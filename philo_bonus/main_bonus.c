@@ -1,3 +1,4 @@
+
 #include "philosophers_bonus.h"
 
 int main(int argc, char *argv[])
@@ -15,5 +16,7 @@ int main(int argc, char *argv[])
 		return (1);
 	if (!ft_initialize_data(data))
 		return (1);
+	ft_start_semaphores(data);
+	ft_start(data);
 	return (0);
 }
