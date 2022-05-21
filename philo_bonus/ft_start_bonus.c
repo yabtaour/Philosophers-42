@@ -16,5 +16,12 @@ void	ft_create_philos(t_data *data)
 
 void	ft_start(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	ft_create_philos(data);
+	while (i < data->philos_num)
+	{
+		waitpid(data->pid[i++], 0, 0);
+	}
 }

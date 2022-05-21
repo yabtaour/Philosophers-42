@@ -10,6 +10,7 @@ SRC = main_bonus.c ft_parsing_bonus.c \
 		ft_join_args_bonus.c ft_start_semaphores_bonus.c \
 		ft_start_bonus.c ft_output_bonus.c \
 		ft_sleep_bonus.c ft_start_philos_bonus.c \
+		ft_check_dead_bonus.c \
 
 
 OBJ = ${SRC:.c=.o}

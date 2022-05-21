@@ -7,6 +7,7 @@
 # include <semaphore.h>
 # include <pthread.h>
 # include <string.h>
+# include <signal.h>
 # include <sys/time.h>
 
 typedef struct s_philo{
@@ -58,5 +59,6 @@ void		ft_sleep(long long time, t_data *data);
 long long	ft_timestamp(void);
 void		ft_output(t_data *data, int philo_id, char *str);
 void		ft_start_philosophers(t_data *data, int i);
+void		*ft_check_dead(void *ptr);
 
 #endif
