@@ -1,6 +1,6 @@
 NAME = philo
 
-CC = CC -Wall  -Wextra
+CC = CC -Wall -Wextra -Werror
 
 SRC = ft_calloc.c main.c ft_timestamp.c\
 		ft_join_args.c ft_split.c \

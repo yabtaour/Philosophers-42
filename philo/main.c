@@ -16,6 +16,8 @@ int	main(int argc, char *argv[])
 	t_data	*data;
 
 	data = (t_data *)malloc(sizeof(t_data));
+	if (!data)
+		return (0);
 	if (argc != 5 && argc != 6)
 		return (1);
 	data->argc = argc;
