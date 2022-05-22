@@ -53,12 +53,14 @@ int			ft_atoi(const char	*str);
 void		*ft_calloc(int count, int size);
 char		*ft_substr(char *s, int start, size_t len);
 int			ft_strlen(char *str);
-void		ft_start_semaphores(t_data *data);
+int			ft_start_semaphores(t_data *data);
 void		ft_start(t_data *data);
 void		ft_sleep(long long time, t_data *data);
 long long	ft_timestamp(void);
 void		ft_output(t_data *data, int philo_id, char *str);
 void		ft_start_philosophers(t_data *data, int i);
 void		*ft_check_dead(void *ptr);
+void		ft_destroy_sem(t_data *data);
+void		ft_kill(t_data *data);
 
 #endif

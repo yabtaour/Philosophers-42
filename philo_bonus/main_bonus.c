@@ -16,7 +16,8 @@ int main(int argc, char *argv[])
 		return (1);
 	if (!ft_initialize_data(data))
 		return (1);
-	ft_start_semaphores(data);
+	if (!ft_start_semaphores(data))
+	 	return (1);
 	ft_start(data);
 	return (0);
 }

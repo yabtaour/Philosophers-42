@@ -34,4 +34,5 @@ void	ft_start_philosophers(t_data *data, int i)
 	data->philosopher[i].last_meal = ft_timestamp();
 	pthread_create(&data->philosopher[i].thread_id, NULL, &ft_check_dead, &data->philosopher[i]);
 	ft_routine(&data->philosopher[i]);
+	pthread_detach(data->philosopher[i].thread_id);
 }

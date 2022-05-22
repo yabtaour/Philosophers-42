@@ -24,4 +24,6 @@ void	ft_start(t_data *data)
 	{
 		waitpid(data->pid[i++], 0, 0);
 	}
+	ft_kill(data);
+	ft_destroy_sem(data);
 }
