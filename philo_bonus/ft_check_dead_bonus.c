@@ -43,6 +43,7 @@ void	*ft_check_dead(void *ptr)
 			free(philosopher->data);
 			exit(1);
 		}
+		usleep(100);
 	}
 	return (NULL);
 }
