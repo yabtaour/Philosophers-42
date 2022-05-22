@@ -18,7 +18,7 @@ void	ft_destroy_sem(t_data *data)
 	sem_close(data->output);
 	sem_close(data->eat);
 	sem_unlink("philo_forks");
-	sem_unlink("philo_action");
+	sem_unlink("philo_output");
 	sem_unlink("philo_eat");
 }
 
@@ -32,7 +32,11 @@ void	*ft_check_dead(void *ptr)
 	{
 		now = ft_timestamp();
 		if (philosopher->eat == philosopher->data->must_eat)
-			return (NULL);
+		{
+			ft_kill(philosopher->data);
+			ft_destroy_sem(philosopher->data);
+			exit (1);
+		}
 		if (now - philosopher->last_meal >= philosopher->data->time_to_die)
 		{
 			philosopher->is_dead = 1;
@@ -40,10 +44,8 @@ void	*ft_check_dead(void *ptr)
 			printf("[%lld] philosopher %d died\n", now - philosopher->data->birth, philosopher->philo_id);
 			ft_kill(philosopher->data);
 			ft_destroy_sem(philosopher->data);
-			free(philosopher->data);
 			exit(1);
 		}
-		usleep(100);
 	}
 	return (NULL);
 }

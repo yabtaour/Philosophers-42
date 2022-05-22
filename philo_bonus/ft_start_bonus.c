@@ -22,8 +22,8 @@ void	ft_start(t_data *data)
 	ft_create_philos(data);
 	while (i < data->philos_num)
 	{
-		waitpid(data->pid[i++], 0, 0);
+		waitpid(data->pid[i], 0, 0);
+		i++;
 	}
-	ft_kill(data);
-	ft_destroy_sem(data);
+	free(data);
 }

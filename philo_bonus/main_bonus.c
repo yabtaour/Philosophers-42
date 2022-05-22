@@ -1,7 +1,6 @@
-
 #include "philosophers_bonus.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_data	*data;
 
@@ -17,7 +16,7 @@ int main(int argc, char *argv[])
 	if (!ft_initialize_data(data))
 		return (1);
 	if (!ft_start_semaphores(data))
-	 	return (1);
+		return (1);
 	ft_start(data);
 	return (0);
 }

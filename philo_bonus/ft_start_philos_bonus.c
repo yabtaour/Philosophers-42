@@ -16,7 +16,8 @@ void	ft_eat(t_philo *philosopher)
 
 void	ft_routine(t_philo *philosopher)
 {
-	while (!(philosopher->is_dead) && (philosopher->eat != philosopher->data->must_eat))
+	while (!(philosopher->is_dead)
+		&& (philosopher->eat != philosopher->data->must_eat))
 	{
 		ft_eat(philosopher);
 		ft_output(philosopher->data, philosopher->philo_id, "is sleeping");
@@ -32,7 +33,8 @@ void	ft_start_philosophers(t_data *data, int i)
 	data->philosopher[i].is_dead = 0;
 	data->philosopher[i].eat = 0;
 	data->philosopher[i].last_meal = ft_timestamp();
-	pthread_create(&data->philosopher[i].thread_id, NULL, &ft_check_dead, &data->philosopher[i]);
 	ft_routine(&data->philosopher[i]);
+	pthread_create(&data->philosopher[i].thread_id, NULL, &ft_check_dead, &data->philosopher[i]);
+	pthread_join(data->philosopher[i].thread_id, NULL);
 	pthread_detach(data->philosopher[i].thread_id);
 }
