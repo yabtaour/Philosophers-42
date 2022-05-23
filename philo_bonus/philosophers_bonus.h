@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers_bonus.h                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yabtaour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 00:08:58 by yabtaour          #+#    #+#             */
+/*   Updated: 2022/05/23 00:47:20 by yabtaour         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #ifndef PHILOSOPHERS_BONUS_H
 # define PHILOSOPHERS_BONUS_H
 
@@ -41,6 +52,7 @@ typedef struct s_data{
 	long long		time;
 	long long		norm;
 	long long		norm2;
+	long long		norm3;
 }	t_data;
 
 int			ft_parsing(t_data *data);
