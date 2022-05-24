@@ -44,17 +44,19 @@ void	ft_end(t_data *data)
 void	*ft_check_dead(t_philo *philo)
 {
 	long long	now;
+	long long	norm;
 
 	while (1)
 	{
 		now = ft_timestamp();
 		if (philo->eat == philo->data->must_eat)
-			return (NULL);
+			exit(0);
 		if (now - philo->last_meal >= philo->data->time_to_die)
 		{
+			norm = now - philo->data->birth;
 			philo->is_dead = 1;
 			sem_wait(philo->data->output);
-			printf("[%lld] philo %d is ded\n", now - philo->data->birth, philo->philo_id);
+			printf("[%lld] philo %d died\n", norm, philo->philo_id);
 			ft_end(philo->data);
 			exit(1);
 		}
