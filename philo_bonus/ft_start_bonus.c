@@ -11,30 +11,34 @@
 /* ************************************************************************** */
 #include "philosophers_bonus.h"
 
-void	ft_create_philos(t_data *data)
+void	ft_create_philos(t_data *data, int *pid)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->philos_num)
 	{
-		data->pid[i] = fork();
-		if (data->pid[i] == 0)
+		pid[i] = fork();
+		if (pid[i] == 0)
 			ft_start_philosophers(data, i);
 		i++;
 	}
 }
 
-void	ft_start(t_data *data)
+int	ft_start(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	ft_create_philos(data);
-	while (i < data->philos_num)
+	data->pid = malloc(sizeof(int) * data->philos_num);
+	if (!data->pid)
 	{
-		waitpid(data->pid[i], 0, 0);
-		i++;
+		free(data);
+		exit(1);
 	}
-	free(data);
+	ft_create_philos(data, data->pid);
+	while (i < data->philos_num)
+		waitpid(data->pid[i++], 0, 0);
+	ft_end(data);
+	return (1);
 }

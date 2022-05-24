@@ -6,7 +6,7 @@
 /*   By: yabtaour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 00:08:10 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/05/23 01:02:52 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/05/23 11:43:41 by yabtaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philosophers_bonus.h"
@@ -25,30 +25,28 @@ void	ft_eat(t_philo *philosopher)
 	philosopher->eat++;
 }
 
-void	ft_routine(t_philo *philosopher)
+void	ft_routine(t_philo *philo)
 {
-	while (!(philosopher->is_dead)
-		&& (philosopher->eat != philosopher->data->must_eat))
+	while (!(philo->is_dead) && philo->eat != philo->data->must_eat)
 	{
-		ft_eat(philosopher);
-		ft_output(philosopher->data, philosopher->philo_id, "is sleeping");
-		ft_sleep(philosopher->data->time_to_sleep, philosopher->data);
-		ft_output(philosopher->data, philosopher->philo_id, "is thinking");
+		ft_eat(philo);
+		ft_output(philo->data, philo->philo_id, "is sleeping");
+		ft_sleep(philo->data->time_to_sleep, philo->data);
+		ft_output(philo->data, philo->philo_id, "is thinking");
 	}
 }
 
-void	ft_start_philosophers(t_data *data, int i)
+void	*ft_start_philosophers(t_data *data, int i)
 {
-	t_philo	*philo;
+	t_philo	philo;
 
-	philo = &data->philosopher[i];
-	data->philosopher[i].data = data;
-	data->philosopher[i].philo_id = i + 1;
-	data->philosopher[i].is_dead = 0;
-	data->philosopher[i].eat = 0;
-	data->philosopher[i].last_meal = ft_timestamp();
-	ft_routine(&data->philosopher[i]);
-	pthread_create(&philo->thread_id, NULL, &ft_check_dead, philo);
-	pthread_join(data->philosopher[i].thread_id, NULL);
-	pthread_detach(data->philosopher[i].thread_id);
+	philo.data = data;
+	philo.philo_id = i + 1;
+	philo.is_dead = 0;
+	philo.eat = 0;
+	philo.last_meal = ft_timestamp();
+	pthread_create(philo.thread_id, NULL, (void *)ft_check_dead, &philo);
+	ft_routine(&philo);
+	pthread_detach(*philo.thread_id);
+	return (NULL);
 }

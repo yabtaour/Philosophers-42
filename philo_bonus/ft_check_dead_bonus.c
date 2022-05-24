@@ -6,7 +6,7 @@
 /*   By: yabtaour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 00:06:10 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/05/23 01:01:20 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/05/23 11:42:16 by yabtaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philosophers_bonus.h"
@@ -37,32 +37,28 @@ void	ft_end(t_data *data)
 {
 	ft_kill(data);
 	ft_destroy_sem(data);
+	free(data->pid);
 	free(data);
-	exit (1);
 }
 
-void	*ft_check_dead(void *ptr)
+void	*ft_check_dead(t_philo *philo)
 {
-	t_philo		*philosopher;
-	t_data		*norm;
 	long long	now;
 
-	philosopher = (t_philo *)ptr;
 	while (1)
 	{
 		now = ft_timestamp();
-		norm = philosopher->data;
-		if (philosopher->eat == norm->must_eat
-			&& philosopher->philo_id == norm->philos_num)
-			ft_end(philosopher->data);
-		if (now - philosopher->last_meal >= philosopher->data->time_to_die)
+		if (philo->eat == philo->data->must_eat)
+			return (NULL);
+		if (now - philo->last_meal >= philo->data->time_to_die)
 		{
-			norm->norm3 = now - philosopher->data->birth;
-			philosopher->is_dead = 1;
-			sem_wait(philosopher->data->output);
-			printf("[%lld] philo %d died\n", norm->norm3, philosopher->philo_id);
-			ft_end(philosopher->data);
+			philo->is_dead = 1;
+			sem_wait(philo->data->output);
+			printf("[%lld] philo %d is ded\n", now - philo->data->birth, philo->philo_id);
+			ft_end(philo->data);
+			exit(1);
 		}
+		usleep(100);
 	}
 	return (NULL);
 }

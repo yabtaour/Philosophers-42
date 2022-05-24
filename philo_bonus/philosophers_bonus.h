@@ -26,7 +26,7 @@ typedef struct s_philo{
 	int				eat;
 	int				is_dead;
 	long long		last_meal;
-	pthread_t		thread_id;
+	pthread_t		*thread_id;
 	struct s_data	*data;
 }	t_philo;
 
@@ -44,15 +44,11 @@ typedef struct s_data{
 	char			*args;
 	char			**arguments;
 	int				total;
-	t_philo			philosopher[200];
-	int				pid[200];
+	int				*pid;
+	t_philo			*philosopher;
 	sem_t			*fork;
 	sem_t			*eat;
 	sem_t			*output;
-	long long		time;
-	long long		norm;
-	long long		norm2;
-	long long		norm3;
 }	t_data;
 
 int			ft_parsing(t_data *data);
@@ -66,13 +62,14 @@ void		*ft_calloc(int count, int size);
 char		*ft_substr(char *s, int start, size_t len);
 int			ft_strlen(char *str);
 int			ft_start_semaphores(t_data *data);
-void		ft_start(t_data *data);
+int			ft_start(t_data *data);
 void		ft_sleep(long long time, t_data *data);
 long long	ft_timestamp(void);
 void		ft_output(t_data *data, int philo_id, char *str);
-void		ft_start_philosophers(t_data *data, int i);
-void		*ft_check_dead(void *ptr);
+void		*ft_start_philosophers(t_data *data, int i);
+void		*ft_check_dead(t_philo *philo);
 void		ft_destroy_sem(t_data *data);
 void		ft_kill(t_data *data);
+void		ft_end(t_data *data);
 
 #endif
